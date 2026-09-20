@@ -72,9 +72,7 @@ If it moves from EUR 90,000 to EUR 85,500, the return is $-5\%$.
 For an asset that pays cash during the period, such as a dividend $D_{i,t+1}$, the total return is
 
 $$
-r_{i,t+1}^{\mathrm{total}}
-=
-\frac{P_{i,t+1}-P_{i,t}+D_{i,t+1}}{P_{i,t}}.
+r_{i,t+1}^{\mathrm{total}} = \frac{P_{i,t+1}-P_{i,t}+D_{i,t+1}}{P_{i,t}}.
 $$
 
 Using adjusted price data often incorporates dividends and similar distributions. We must document which price definition a dataset uses.
@@ -96,8 +94,7 @@ $$
 Therefore the total compounded return is
 
 $$
-R_{0:T}=\frac{V_T}{V_0}-1
-       =\prod_{t=1}^{T}(1+R_t)-1.
+R_{0:T}=\frac{V_T}{V_0}-1  =\prod_{t=1}^{T}(1+R_t)-1.
 $$
 
 Returns add only approximately when they are small. Wealth compounds multiplicatively.
