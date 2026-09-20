@@ -312,3 +312,403 @@ The next step is risk:
 - covariance and correlation;
 - drawdown;
 - why diversification depends on co-movement rather than the number of assets.
+
+
+---
+
+## Lesson 2: expected return, uncertainty, and portfolio risk
+
+### 1. From an observed return to an uncertain return
+
+Recall the definition of the return of the whole portfolio, with no external deposits or withdrawals:
+
+$$
+R_p=\frac{V_{t+1}-V_t}{V_t}.
+$$
+
+For unchanged holdings and no costs, this becomes
+
+$$
+R_p=\sum_i w_i r_i.
+$$
+
+We suppress time subscripts for this lesson. The weights are fixed at the beginning of one chosen period; the asset returns refer to that same period. Returns include distributions such as dividends, where applicable.
+
+After the period, $r_i$ and $R_p$ are observed numbers. Before the period, we describe them as random variables with a joint probability distribution. That distribution is a model of our uncertainty.
+
+This distinction should feel familiar from statistical inference: an observation, a model parameter, and an estimate of that parameter are different objects.
+
+All numerical examples below are hypothetical, not forecasts or proposed allocations.
+
+### 2. Expected return: averaging over possible outcomes
+
+Suppose a return $r$ has possible outcomes $r_s$ with probabilities $p_s$. Its expectation is
+
+$$
+\mu=\mathbb E[r]=\sum_s p_s r_s,
+\qquad \sum_s p_s=1.
+$$
+
+For a continuous distribution with density $f(r)$, the sum becomes an integral:
+
+$$
+\mu=\int r f(r)\,dr.
+$$
+
+Expectation is a probability-weighted average. It need not equal any actual outcome.
+
+Consider two hypothetical one-month investments:
+
+| Investment | Outcome 1, probability 1/2 | Outcome 2, probability 1/2 | Expected return |
+|---|---:|---:|---:|
+| A | 0% | 2% | 1% |
+| B | -9% | 11% | 1% |
+
+Both have the same expected return. Their possible losses are very different. With EUR 2,000 invested entirely in either one, expected ending wealth is EUR 2,020, but the possible ending values are:
+
+- A: EUR 2,000 or EUR 2,040;
+- B: EUR 1,820 or EUR 2,220.
+
+Expected wealth is not a promised outcome. Maximizing it alone does not express how much uncertainty or loss we are willing to accept.
+
+### 3. Variance and volatility
+
+To measure dispersion around the expected return, start with the deviation $r-\mu$. Its expectation is zero, so simply averaging deviations cannot measure dispersion.
+
+Instead, square them:
+
+$$
+\sigma^2=\operatorname{Var}(r)
+=\mathbb E[(r-\mu)^2].
+$$
+
+Variance is nonnegative. Squaring gives larger deviations more weight and treats deviations above and below the mean symmetrically.
+
+The standard deviation of returns is called volatility:
+
+$$
+\sigma=\sqrt{\operatorname{Var}(r)}.
+$$
+
+For investment A, the deviations from its mean $0.01$ are $-0.01$ and $+0.01$:
+
+$$
+\sigma_A^2
+=\tfrac12(-0.01)^2+\tfrac12(0.01)^2
+=0.0001,
+\qquad \sigma_A=0.01=1\%.
+$$
+
+For B, they are $-0.10$ and $+0.10$:
+
+$$
+\sigma_B^2=0.01,
+\qquad \sigma_B=0.10=10\%.
+$$
+
+Here “10% volatility” means a standard deviation of 10 percentage points in the one-month return. We calculate using decimal returns throughout.
+
+For fixed starting wealth and no external flows,
+
+$$
+V_{t+1}=V_t(1+R_p)
+\quad\Longrightarrow\quad
+\operatorname{SD}(V_{t+1})=V_t\sigma_p.
+$$
+
+A portfolio volatility of 10% therefore corresponds to EUR 200 standard deviation in ending wealth when $V_t=2000$.
+
+This is not a maximum loss, nor does it by itself specify a probability of loss. Probabilities require the return distribution, not just its standard deviation. We have not assumed Gaussian returns.
+
+### 4. Expected portfolio return
+
+Linearity of expectation gives
+
+$$
+\mu_p=\mathbb E[R_p]
+=\mathbb E\!\left[\sum_i w_i r_i\right]
+=\sum_i w_i\mu_i
+=\mathbf w^\mathsf T\boldsymbol\mu.
+$$
+
+This does not require independent asset returns.
+
+We treat the weights as fixed for this one-period calculation. Later, when weights depend on market information, the corresponding expectations and covariances can be conditioned on that information.
+
+Portfolio variance takes more work because it depends on how asset returns move together.
+
+### 5. Covariance: do deviations occur together?
+
+For assets $i$ and $j$, define
+
+$$
+\Sigma_{ij}
+=\operatorname{Cov}(r_i,r_j)
+=\mathbb E[(r_i-\mu_i)(r_j-\mu_j)].
+$$
+
+If both tend to be above their respective means together, and below them together, the products tend to be positive. If one tends to be above its mean while the other is below, they tend to be negative.
+
+Thus covariance measures co-movement of deviations from the means. It does not mean that prices always move in the same direction.
+
+For $i=j$,
+
+$$
+\Sigma_{ii}=\sigma_i^2.
+$$
+
+The covariance matrix collects these quantities:
+
+$$
+\boldsymbol\Sigma=
+\begin{pmatrix}
+\sigma_1^2 & \operatorname{Cov}(r_1,r_2) & \cdots\\
+\operatorname{Cov}(r_2,r_1) & \sigma_2^2 & \cdots\\
+\vdots & \vdots & \ddots
+\end{pmatrix}.
+$$
+
+### 6. Correlation: normalized covariance
+
+When both standard deviations are nonzero, correlation is
+
+$$
+\rho_{ij}
+=\frac{\Sigma_{ij}}{\sigma_i\sigma_j},
+\qquad -1\le \rho_{ij}\le 1.
+$$
+
+Equivalently,
+
+$$
+\Sigma_{ij}=\rho_{ij}\sigma_i\sigma_j.
+$$
+
+- $\rho=1$: perfect positive linear relationship between returns.
+- $\rho=0$: zero linear correlation; other dependence can remain.
+- $\rho=-1$: perfect negative linear relationship.
+
+Zero correlation does not generally imply independence. Correlation also does not establish causation.
+
+If an idealized cash asset has a deterministic return, its volatility and covariance with risky returns are zero. Its correlation is undefined because the denominator is zero; we do not need a correlation value to include it in the covariance matrix.
+
+### 7. Deriving portfolio variance
+
+Subtract the expected portfolio return:
+
+$$
+R_p-\mu_p=\sum_i w_i(r_i-\mu_i).
+$$
+
+Square and take the expectation:
+
+$$
+\begin{aligned}
+\sigma_p^2
+&=\mathbb E\!\left[
+\left(\sum_i w_i(r_i-\mu_i)\right)
+\left(\sum_j w_j(r_j-\mu_j)\right)
+\right]\\
+&=\sum_i\sum_j w_iw_j
+\mathbb E[(r_i-\mu_i)(r_j-\mu_j)]\\
+&=\sum_i\sum_j w_iw_j\Sigma_{ij}\\
+&=\boxed{\mathbf w^\mathsf T\boldsymbol\Sigma\mathbf w}.
+\end{aligned}
+$$
+
+For two assets:
+
+$$
+\boxed{
+\sigma_p^2
+=w_1^2\sigma_1^2+w_2^2\sigma_2^2
++2w_1w_2\rho_{12}\sigma_1\sigma_2.
+}
+$$
+
+The factor of two appears because the double sum contains both $(i,j)=(1,2)$ and $(2,1)$.
+
+Expected returns are weighted averages. Volatility is generally not a weighted average: the cross terms matter.
+
+### 8. A worked diversification example
+
+Suppose two hypothetical assets each have:
+
+- expected monthly return 1%;
+- monthly volatility 10%.
+
+Allocate half the portfolio to each. For any correlation, expected portfolio return is
+
+$$
+\mu_p=0.5(0.01)+0.5(0.01)=0.01.
+$$
+
+Its variance is
+
+$$
+\sigma_p^2
+=(0.5)^2(0.10)^2+(0.5)^2(0.10)^2
++2(0.5)(0.5)\rho(0.10)(0.10)
+=0.005(1+\rho).
+$$
+
+| Correlation | Portfolio monthly volatility | Standard deviation of ending wealth, starting at EUR 2,000 |
+|---:|---:|---:|
+| 1 | 10.00% | EUR 200.00 |
+| 0.5 | 8.66% | EUR 173.21 |
+| 0 | 7.07% | EUR 141.42 |
+| -1 | 0.00% | EUR 0.00 |
+
+The zero-volatility case is an idealized mathematical limit: equal volatilities and perfectly opposite deviations cancel exactly. It is not a claim that we can obtain a reliable risk-free return this way in real markets.
+
+With imperfect positive correlation, diversification already reduces volatility relative to either asset alone in this example. Negative correlation is not required.
+
+Holding more asset names is insufficient if their returns are strongly correlated. Historical correlation can also change, so estimated diversification benefits are uncertain.
+
+### 9. Population quantities versus estimates from data
+
+The model quantities $\mu_i$ and $\Sigma_{ij}$ are unknown. With $n$ aligned historical return observations, common estimators are
+
+$$
+\widehat\mu_i=\frac{1}{n}\sum_{k=1}^{n}r_{i,k}
+$$
+
+and
+
+$$
+\widehat\Sigma_{ij}
+=\frac{1}{n-1}\sum_{k=1}^{n}
+(r_{i,k}-\widehat\mu_i)(r_{j,k}-\widehat\mu_j).
+$$
+
+The $n-1$ denominator accounts for estimating the means from the same sample; it gives an unbiased covariance estimator for independent, identically distributed observations with finite second moments. Market data may violate those assumptions.
+
+We must align dates, use a common valuation currency, document distributions and missing observations, and never estimate inputs from data unavailable at the decision time.
+
+Daily and monthly volatilities are different quantities. The familiar square-root scaling holds for a sum of uncorrelated returns with equal variance:
+
+$$
+\operatorname{Var}\!\left(\sum_{k=1}^{m}r_k\right)=m\sigma^2.
+$$
+
+For compounded simple returns this is generally an approximation. For sums of log returns it is exact under the stated covariance assumptions. We will initially report volatility at the actual sampling frequency.
+
+### 10. Drawdown: loss relative to an earlier peak
+
+Volatility describes dispersion of returns. Drawdown describes a trajectory of wealth.
+
+Assume positive portfolio value with no external deposits or withdrawals. Define its running peak:
+
+$$
+H_t=\max_{0\le s\le t}V_s.
+$$
+
+Define drawdown as a nonnegative loss fraction:
+
+$$
+D_t=1-\frac{V_t}{H_t}.
+$$
+
+Maximum drawdown over the observed interval is
+
+$$
+D_{\max}=\max_{0\le t\le T}D_t.
+$$
+
+For example:
+
+| Time | Portfolio value | Running peak | Drawdown |
+|---:|---:|---:|---:|
+| 0 | EUR 2,000 | EUR 2,000 | 0% |
+| 1 | EUR 2,200 | EUR 2,200 | 0% |
+| 2 | EUR 1,980 | EUR 2,200 | 10% |
+| 3 | EUR 2,090 | EUR 2,200 | 5% |
+| 4 | EUR 2,310 | EUR 2,310 | 0% |
+
+Maximum drawdown is 10%, even though the final cumulative return is
+
+$$
+\frac{2310}{2000}-1=15.5\%.
+$$
+
+At time 2, the loss relative to initial capital is only 1%, but the drawdown from the earlier peak is 10%. Those answer different questions.
+
+A historical maximum drawdown is not a bound on future losses. A new path may exceed it. With deposits or withdrawals, we should measure drawdown on a performance index adjusted for external cash flows.
+
+### 11. Why the order of returns matters
+
+Consider the same four returns in two different orders, starting from EUR 2,000:
+
+| Path | Return sequence | Wealth sequence, including initial value | Maximum drawdown |
+|---|---|---|---:|
+| A | +10%, +10%, -10%, -10% | 2000, 2200, 2420, 2178, 1960.20 | 19% |
+| B | +10%, -10%, +10%, -10% | 2000, 2200, 1980, 2178, 1960.20 | 10.9% |
+
+Both have the same arithmetic mean, sample volatility, and final value. Their maximum drawdowns differ.
+
+The final values agree because multiplication is commutative:
+
+$$
+V_4=2000(1.1)^2(0.9)^2=1960.20.
+$$
+
+The peaks and subsequent troughs depend on the order. A variance limit therefore cannot, by itself, guarantee a drawdown limit.
+
+### 12. Connecting these quantities to optimization
+
+We now have a candidate mathematical problem for fixed one-period weights:
+
+$$
+\max_{\mathbf w}\ \mathbf w^\mathsf T\boldsymbol\mu
+$$
+
+subject to
+
+$$
+\mathbf w^\mathsf T\boldsymbol\Sigma\mathbf w
+\le \sigma_{\mathrm{allowed}}^2,
+\qquad
+\sum_i w_i=1,
+\qquad
+w_i\ge0.
+$$
+
+This asks for the highest expected return within a chosen volatility limit. It is one possible formulation, not yet our selected objective.
+
+The inputs $\boldsymbol\mu$ and $\boldsymbol\Sigma$ must be estimated. The risk limit expresses a preference. Neither is supplied by the optimizer itself.
+
+For drawdown control, we would instead need a model for entire return paths. For example,
+
+$$
+\Pr(D_{\max}>d_{\mathrm{allowed}})\le\alpha
+$$
+
+specifies an allowed probability $\alpha$ of exceeding drawdown $d_{\mathrm{allowed}}$ over a stated horizon. Its validity depends on the path model and its estimated uncertainty.
+
+Volatility and drawdown each capture part of risk. Neither fully describes rare losses, liquidity, or counterparty failure.
+
+### 13. Checks for understanding
+
+Try these before opening the answers.
+
+1. An asset returns -4% or +6%, each with probability one half. What are its expected return and volatility?
+2. Two assets each have volatility 8%. With equal weights and zero correlation, what is portfolio volatility?
+3. A portfolio rises from EUR 2,000 to EUR 2,500 and falls to EUR 2,100. What is its current drawdown, and what is its cumulative return from the start?
+4. Can two return sequences have the same mean and volatility but different maximum drawdowns?
+
+<details>
+<summary>Answers</summary>
+
+1. The mean is 1%. Deviations from it are -5 and +5 percentage points, so volatility is 5%.
+
+2. The variance is $2(0.5)^2(0.08)^2=0.0032$, giving volatility $\sqrt{0.0032}\approx0.05657=5.66\%$.
+
+3. Drawdown is $1-2100/2500=16\%$. Cumulative return is $2100/2000-1=5\%$.
+
+4. Yes. Reordering the same returns leaves their mean and volatility unchanged but can change the sequence of peaks and troughs, as in section 11.
+
+</details>
+
+### Next discussion
+
+Before choosing an optimizer, we should distinguish the risk measures we can estimate from the losses we would actually tolerate. Then we can derive a two-asset allocation problem and examine how uncertainty in the estimated inputs changes its answer.
