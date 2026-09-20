@@ -20,17 +20,17 @@ These values record our starting point and must be reviewed before modelling or 
 
 The decision vector at time \(t\) is
 
-\[
+$$
 \mathbf w_t =
 (w_{\mathrm{cash}}, w_{\mathrm{bonds}}, w_{\mathrm{equities}},
 w_{\mathrm{gold}}, w_{\mathrm{BTC}}),
-\]
+$$
 
 subject initially to
 
-\[
+$$
 \sum_i w_{i,t}=1,\qquad w_{i,t}\geq 0.
-\]
+$$
 
 The observed state \(\mathbf X_t\) may include prices, returns, volatility, interest rates, EUR/USD, oil, market stress, and measured geopolitical risk.
 
