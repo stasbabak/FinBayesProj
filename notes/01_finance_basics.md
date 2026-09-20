@@ -14,9 +14,9 @@ The equations in this lesson are accounting identities. They do not predict mark
 
 Let
 
-- \(P_{i,t}\) be the price of one unit of asset \(i\) at time \(t\);
-- \(q_{i,t}\) be the number of units we hold;
-- \(A_{i,t}\) be the euro value of that position.
+- $P_{i,t}$ be the price of one unit of asset \(i\) at time \(t\);
+- $q_{i,t}$ be the number of units we hold;
+- $A_{i,t}$ be the euro value of that position.
 
 Then
 
@@ -34,8 +34,7 @@ $$
 Fractional quantities are allowed for many assets. If Bitcoin costs EUR 90,000 and we invest EUR 200, then
 
 $$
-q_{\mathrm{BTC}}=\frac{200}{90{,}000}
-                 \approx 0.002222\ \mathrm{BTC}.
+q_{\mathrm{BTC}}=\frac{200}{90{,}000}  \approx 0.002222\ \mathrm{BTC}.
 $$
 
 We do not need to buy one whole Bitcoin.
@@ -46,7 +45,7 @@ A price has units, such as EUR per BTC. A return is a dimensionless relative cha
 
 ## 2. Simple return
 
-If an asset price moves from \(P_{i,t}\) to \(P_{i,t+1}\), its simple return is
+If an asset price moves from $P_{i,t}$ to $P_{i,t+1}$, its simple return is
 
 $$
 r_{i,t+1}
@@ -68,9 +67,9 @@ r_{\mathrm{BTC}}
 =0.05=5\%.
 $$
 
-If it moves from EUR 90,000 to EUR 85,500, the return is \(-5\%\).
+If it moves from EUR 90,000 to EUR 85,500, the return is $-5\%$.
 
-For an asset that pays cash during the period, such as a dividend \(D_{i,t+1}\), the total return is
+For an asset that pays cash during the period, such as a dividend $D_{i,t+1}$, the total return is
 
 $$
 r_{i,t+1}^{\mathrm{total}}
@@ -82,7 +81,7 @@ Using adjusted price data often incorporates dividends and similar distributions
 
 ## 3. Wealth evolution and compounding
 
-If the whole portfolio earns return \(R_{t+1}\), ignoring deposits and withdrawals,
+If the whole portfolio earns return $R_{t+1}$, ignoring deposits and withdrawals,
 
 $$
 V_{t+1}=V_t(1+R_{t+1}).
