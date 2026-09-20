@@ -229,19 +229,13 @@ This example also shows an important distinction:
 Let $C_{t+1}$ be trading costs and other charges paid during the period, and let $F_{t+1}$ be external cash flow into the portfolio. We define $F>0$ for a deposit and $F<0$ for a withdrawal. Then
 
 $$
-V_{t+1}
-=
-V_t(1+R_{p,t+1})
--C_{t+1}
-+F_{t+1}.
+V_{t+1} = V_t(1+R_{p,t+1}) - C_{t+1} + F_{t+1}.
 $$
 
 For performance measurement, deposits must not be mistaken for investment profit. A basic net return excluding external cash flow is
 
 $$
-R_{t+1}^{\mathrm{net}}
-=
-\frac{V_{t+1}-V_t-F_{t+1}}{V_t}.
+R_{t+1}^{\mathrm{net}} = \frac{V_{t+1}-V_t-F_{t+1}}{V_t}.
 $$
 
 Later we will model transaction fees, bid/ask spread, slippage, taxes, and interest on cash more carefully.
@@ -284,9 +278,7 @@ $$
 A portfolio loses $20\%$. What gain restores it?
 
 $$
-G_{\mathrm{recovery}}
-=\frac{1}{1-0.20}-1
-=0.25=25\%.
+G_{\mathrm{recovery}} =\frac{1}{1-0.20}-1 =0.25=25\%.
 $$
 
 ### Check 3
