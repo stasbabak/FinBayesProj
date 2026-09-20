@@ -2,7 +2,7 @@
 
 This chapter will derive the static portfolio baseline before any dynamic strategy is introduced.
 
-For portfolio weights \(\mathbf w\) and asset-return covariance matrix \(\boldsymbol\Sigma\), portfolio variance is
+For portfolio weights $\mathbf w$ and asset-return covariance matrix $\boldsymbol\Sigma$, portfolio variance is
 
 $$
 \sigma_p^2 = \mathbf w^\mathsf{T}\boldsymbol\Sigma\mathbf w.
