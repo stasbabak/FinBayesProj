@@ -105,17 +105,17 @@ $$
 R_{\mathrm{annual}}=(1+r)^{12}-1.
 $$
 
-Thus $5\%$ every month would imply
+Thus $5$% every month would imply
 
 $$
 1.05^{12}-1\approx79.6\%
 $$
 
-per year before costs and taxes. This is why EUR 100 per month from EUR 2,000 is an ambitious target even though EUR 100 sounds modest.
+$\approx 80$% per year before costs and taxes. This is why EUR 100 per month from EUR 2,000 is an ambitious target even though EUR 100 sounds modest.
 
 ### Gains and losses are asymmetric
 
-A $50\%$ loss followed by a $50\%$ gain does not restore the initial value:
+A $50$% loss followed by a $50$% gain does not restore the initial value:
 
 $$
 1{,}000(1-0.5)(1+0.5)=750.
@@ -127,7 +127,7 @@ $$
 G_{\mathrm{recovery}}=\frac{1}{1-L}-1.
 $$
 
-After a $50\%$ loss, the required gain is $100\%$. This asymmetry is one reason drawdown control matters.
+After a $50$% loss, the required gain is $100$%. This asymmetry is one reason drawdown control matters.
 
 ## 4. Log return
 
